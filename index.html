@@ -34,6 +34,88 @@
     <title>Tasky</title>
   </head>
   <body>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add Task to-do</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="ipImageUrl" class="form-label">Image URL</label>
+                <input
+                  type="url"
+                  placeholder="Eg : https://exampleimage.jpg"
+                  class="form-control"
+                  id="ipImageUrl"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="ipTaskTitle" class="form-label">Task Title</label>
+                <input
+                  type="text"
+                  placeholder="Problem Solving"
+                  class="form-control"
+                  id="ipTaskTitle"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="ipTaskType" class="form-label">Task Type</label>
+                <input
+                  type="text"
+                  placeholder="Competetive Coding"
+                  class="form-control"
+                  id="ipTaskType"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="ipTaskDescription" class="form-label"
+                  >Task Description</label
+                >
+                <textarea
+                  type="text"
+                  rows="6"
+                  placeholder="Do solve questions on Dynamic Programming"
+                  class="form-control"
+                  id="ipTaskDescription"
+                ></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              onclick="saveChanges()"
+              class="btn btn-primary"
+            >
+              Save changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Navbar -->
     <nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm">
       <div class="container-fluid">
@@ -55,7 +137,11 @@
               <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
           </ul>
-          <button class="btn btn-primary">
+          <button
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
             <i class="fas fa-plus"></i> Add New
           </button>
         </div>
@@ -71,7 +157,7 @@
             <div class="input-group shadow-lg">
               <input
                 type="text"
-                class="form-control p-2"
+                class="form-control p-3"
                 placeholder="Search Task"
                 aria-label="Recipient's username"
                 aria-describedby="basic-addon2"
@@ -86,9 +172,9 @@
 
       <!-- All Cards -->
       <section>
-        <div class="row mb-3">
+        <div class="row mb-3 card__container">
+          <!-- Card -->
           <div class="col-md-6 col-lg-4">
-            <!-- Card -->
             <div class="card mb-3 border">
               <div class="card-header d-flex justify-content-end gap-2">
                 <button type="button" class="btn btn-outline-success">
@@ -109,7 +195,7 @@
                   With supporting text below as a natural lead-in to additional
                   content.
                 </p>
-                <span class="badge bg-secondary">New</span>
+                <span class="badge bg-primary">New</span>
               </div>
               <div class="card-footer text-muted">
                 <button type="button" class="btn btn-outline-primary float-end">
@@ -121,11 +207,14 @@
         </div>
       </section>
     </div>
+
     <!-- JavaScript Bundle with Popper -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
       crossorigin="anonymous"
     ></script>
+    <!-- Own JS -->
+    <script src="./index.js"></script>
   </body>
 </html>
