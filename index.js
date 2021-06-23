@@ -1,6 +1,10 @@
 console.log("Hello");
+const LOCAL_STORAGE_KEY = "tasky";
 
 const cardContainer = document.querySelector(".card__container");
+
+//Array of all cards.
+const cardsListDB = [];
 
 const createCard = ({ id, imageUrl, taskTitle, taskType, taskDescription }) => {
   return `
@@ -36,6 +40,21 @@ const createCard = ({ id, imageUrl, taskTitle, taskType, taskDescription }) => {
     `;
 };
 
+const loadInitialTasksCard = () => {
+  const initialData = localStorage.getItem(LOCAL_STORAGE_KEY);
+  if (!initialData) return;
+
+  const { allTasks } = JSON.parse(initialData);
+  console.log(allTasks);
+
+  allTasks.map((singleCard) => {
+    console.log(singleCard);
+    const newCard = createCard(singleCard);
+    cardContainer.insertAdjacentHTML("beforeend", newCard);
+    cardsListDB.push(singleCard);
+  });
+};
+
 const saveChanges = () => {
   const taskData = {
     id: `${Date.now()}`, //Unique Id time in millis.
@@ -48,7 +67,11 @@ const saveChanges = () => {
   //window is the parent object of browser.
   //document is the parent object of html.
 
+  cardsListDB.push(taskData);
+  localStorage.setItem(
+    LOCAL_STORAGE_KEY,
+    JSON.stringify({ allTasks: cardsListDB })
+  );
   const newCard = createCard(taskData);
-
   cardContainer.insertAdjacentHTML("beforeend", newCard);
 };
